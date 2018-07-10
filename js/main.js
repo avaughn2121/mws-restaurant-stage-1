@@ -71,14 +71,14 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 /**
  * Initialize leaflet map, called from HTML.
  */
-initMap = () => {
+window.initMap = () => {
   self.newMap = L.map('map', {
         center: [40.722216, -73.987501],
         zoom: 12,
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: '<your MAPBOX API KEY HERE>',
+    mapboxToken: 'pk.eyJ1IjoiYXZhdWdobjA5MDkiLCJhIjoiY2ppdnYzN3lnMnhreTNqcmZubHB5dmlqOCJ9.UvxxyLlqqm7KPXNFrJwrTw',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -159,6 +159,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.href = DBHelper.urlForRestaurant(restaurant);
   li.append(image);
 
   const name = document.createElement('h1');
@@ -194,6 +195,7 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     }
   });
 } 
+
 /* addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map
@@ -205,3 +207,10 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
+/*var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+ 
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXZhdWdobjA5MDkiLCJhIjoiY2ppdnYzN3lnMnhreTNqcmZubHB5dmlqOCJ9.UvxxyLlqqm7KPXNFrJwrTw';
+var map = new mapboxgl.Map({
+container: 'YOUR_CONTAINER_ELEMENT_ID',
+style: 'mapbox://styles/mapbox/streets-v10'
+});*/
